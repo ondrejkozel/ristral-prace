@@ -15,6 +15,7 @@
 \cislovat{2}
 \brokenpenalty 10000
 \usepackage{minted}
+\usepackage[hidelinks]{hyperref}
 \begin{document}
 
 \titul{Tvorba jednoduchého řídicího informačního systému dopravní společnosti}{Ondřej Kozel}{Mgr.\,Naďa Horáková}{Brno 2021}
@@ -30,18 +31,18 @@ Kromě webového rozhraní, které slouží k úpravě a prohlížení zastávek
 zobrazující aktuální jízdní informace, například nejbližší zastávky a časy příjezdu k nim, aktuální zpoždění, atp.
 }
 
-\klslova{}
-\keywords{}
+%\klslova{}
+%\keywords{}
 
 \obsah
-\listoffigures
-\listoftables
+%\listoffigures
+%\listoftables
 
 \kapitola{Úvod a cíl práce}
 \sekce{Úvod do problematiky}
 Dnešní integrované dopravní systémy potřebují vhodný informační systém, umožňující kontrolu a řízení vozidel hromadné dopravy.
 Takový \emph{telematický}\footnote{
-Pojem zahrnující řadu technologií používaných hlavně v nákladní a hromadné dopravě, různá telekomunikační zařízení umožňující sdílení dat mezi vozidly a jejich sledování a řízení, satelitní navigaci apod. 
+Pojem zahrnující řadu technologií používaných hlavně v nákladní a hromadné dopravě, různá telekomunikační zařízení umožňující sdílení dat mezi vozidly a jejich sledování a řízení, satelitní navigaci apod. \cite{webfleet}
 } systém je zásadním prvkem v zajišťování plynulé dopravy a maximálního komfortu pro cestující, řidiče vozidel a dispečery.
 Integrované dopravní systémy obvykle používají obdobné řídicí informační systémy, poskytující například tyto výhody:
 \begin{itemize}
@@ -63,6 +64,8 @@ Cílem práce je navrhnout a naprogramovat funkční řídicí systém pro dopra
 Finální program bude přístupný jako \textbf{progresivní webová aplikace} umožňujicí správu zastávek, linek, vozidel, řidičů, atd. ve webovém prohlížeči bez nutnosti instalace na zařízení uživatele. Palubní počítač vozidla bude suplován mobilním zařízením.
 
 \begin{literatura}
+
+\citace{webfleet}{Webfleet CZ, online}{Co je telematika? Webfleet Solutions CZ. Správa vozového parku a sledování vozidel — Webfleet Solutions CZ [online]. [cit. 2022-02-10]. Dostupné z: Co je telematika? Webfleet Solutions CZ. Správa vozového parku a sledování vozidel — Webfleet Solutions CZ [online]. [cit. 2022-02-10]. Dostupné z: \url{https://www.webfleet.com/cs_cz/webfleet/fleet-management/glossary/telematics/}}
 
 
 \end{literatura}
