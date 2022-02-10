@@ -35,7 +35,7 @@ zobrazující aktuální jízdní informace, například nejbližší zastávky 
 %\keywords{}
 
 \obsah
-%\listoffigures
+\listoffigures
 %\listoftables
 
 \kapitola{Úvod a cíl práce}
@@ -47,7 +47,7 @@ Pojem zahrnující řadu technologií používaných hlavně v nákladní a hrom
 Integrované dopravní systémy obvykle používají obdobné řídicí informační systémy, poskytující například tyto výhody:
 \begin{itemize}
 	\item rychlá přímá komunikace mezi vozidlem a dispečinkem nebo mezi vozidly
-	\item usnadnění práce řidičovi (např. itinerář jízdy, informace o změně trasy z důvodu výluk, mimořádná událost, ...)
+	\item usnadnění práce řidičovi (např. itinerář, informace o změně trasy z důvodu výluk, mimořádná událost, ...)
 	\item zjišťování fyzické polohy vozidel
 	\item dopravní informovanost cestujících (elektronické označníky na zastávkách, aktuální poloha vozidel dostupná na internetu, ...)
 	\item podkladové informace pro optimalizaci provozu (vyhodnocování jízdy vozidel podle jízdního řádu, sledování obsazenosti vozidel,...)
@@ -63,10 +63,69 @@ Vzhledem ke stále složitějšímu provozu veřejné dopravy je propracovaný �
 Cílem práce je navrhnout a naprogramovat funkční řídicí systém pro dopravní společnost, schopný uspokojit požadavky menšího dopravního podniku s nízkými nároky na komplexnost a celkovou propracovanost systému.
 Finální program bude přístupný jako \textbf{progresivní webová aplikace} umožňujicí správu zastávek, linek, vozidel, řidičů, atd. ve webovém prohlížeči bez nutnosti instalace na zařízení uživatele. Palubní počítač vozidla bude suplován mobilním zařízením.
 
+\podsekce{Plánované funkcionality systému}
+Od systému je očekáváno, že bude:
+\begin{itemize}
+	\item pracovat ve dvou režimech:
+	\begin{enumerate}
+		\item režim jednotlivce – koncovým uživatelem systému je jediná osoba, která spravuje vlastní zastávky, linky, vozidla apod. a zároveň je řidičem.
+		\item režim organizace – systém je využíván vícero uživateli s různými oprávněními\footnote{
+Oprávnění uživatelů byla vypsána jen ve zkratce. Specifikaci naleznete v kapitole \textbf{Návrh systému}.
+}:
+		\begin{enumerate}
+			\item \emph{řadový uživatel} – uživatel s minimálními oprávněními: pouze prohlíží zastávky, linky, vozidla apod. a svoje uskutečněné a naplánované jízdy\footnote{
+\emph{Jízdou} se rozumí jediná výprava vozu na linku, postupné obsloužení zastávek od výchozí po konečnou.
+}
+, uskutečňuje napánované jízdy
+			\item \emph{administrátor} – dědí oprávnění řadového uživatele, navíc může zastávky, linky, vozidla apod. i upravovat a plánovat jízdy řadovým uživatelům
+			\item \emph{superadministrátor} – dědí oprávnění administrátora, navíc může spravovat podřízené účty (vytvářet, upravovat údaje a oprávnění, mazat)
+		\end{enumerate}
+	\end{enumerate}
+	\item poskytovat řidiči přehledné rozhraní simulující palubní počítač na mobilním zařízení, které by mu zpřístupňovalo itinerář, informace o jízdě, případně mapu, a další související informace.
+	\item umožňovat vytváření, prohlížení, úpravu a mazání zastávek, linek, vozidel a dalších objektů a jejich uložení v databázi.
+	\item pomáhat s plánováním jízd a jejich přiřazováním řidičům.
+	\item analyzovat proběhlé jízdy a upozorňovat na anomálie v minulých jízdách.
+\end{itemize}
+
+
+\kapitola{Návrh systému}
+
+\sekce{UML}
+UML, \emph{Unified Modeling Language}, je soubor grafických notací, který se používá (nejen) pří vývoji softwaru, standard v oblasti analýzy a návrhu.
+Je užitečným nástrojem při plánování a vývoji software. S přibývající složitostí počítačových programů již prakticky není možné, aby celý složitý systém naprogramoval jediný člověk,
+a tak bývá nutné pracovat v týmu programátorů. Mezi programátory musí probíhat velmi dobrá komunikace, kterou velmi usnadňuje používání grafických notací jako jsou například UML diagramy.
+Dále může přijít vhod při odhadování ceny systému v počátcích vývoje. \cite{uvod_do_uml}
+
+\sekce{Případy užití}
+Případ užití, \emph{use case}, je sada akcí, které vedou k dosažení určitého cíle. Případem užití může být například registrace uživatele, vytvoření zastávky, zahájení jízdy apod.
+– definuje funkcionality, které by měl navrhovaný systém umět. \cite{uml_use_case}
+
+Use case je nejčastěji zakreslován jako elipsa s jeho názvem uvnitř.
+V diagramu figurují ještě \emph{aktéři}, kteří představují buď uživatele, nebo nějaký externí činitel\footnote{
+Externím činitelem může být například  čas. Například: v bankovní aplikaci by aktér \emph{Čas} mohl být asociovaný k UC \emph{Odeslat výpis z účtu}.
+\emph{Čas} by jednou za měsíc poslal uživatelům výpis z bankovního účtu emailem.
+}, kteří jsou asociovaní s vybranými use cases a tím symbolizují, že se k nim vztahují.
+
+\obrazek
+\vlozobr{edit_an_article.pdf}{1.25}
+\endobr{Jednoduchý use case diagram\obrzdroj{\cite{edit_an_article}}}
+
+\podsekce{Diagram případů užití navrhovaného systému}
+\obrazekp
+\vlozobrbox{ristral-use-case-diagram.png}{!}{.95\textheight}
+\endobr{UML Use case diagram systému\obrzdroj{\cite{ristral_use_case}}}
+
+
+
 \begin{literatura}
 
-\citace{webfleet}{Webfleet CZ, online}{Co je telematika? Webfleet Solutions CZ. Správa vozového parku a sledování vozidel — Webfleet Solutions CZ [online]. [cit. 2022-02-10]. Dostupné z: Co je telematika? Webfleet Solutions CZ. Správa vozového parku a sledování vozidel — Webfleet Solutions CZ [online]. [cit. 2022-02-10]. Dostupné z: \url{https://www.webfleet.com/cs_cz/webfleet/fleet-management/glossary/telematics/}}
+\citace{webfleet}{Webfleet CZ, Co je telematika?}{Co je telematika? Webfleet Solutions CZ. \emph{Webfleet Solutions CZ} [online]. [cit. 2022-02-10]. Dostupné z: \url{https://www.webfleet.com/cs_cz/webfleet/fleet-management/glossary/telematics/}}
+\citace{uvod_do_uml}{ITnetwork.cz, Úvod do UML}{ČÁPKA, David. Úvod do UML. \emph{ITnetwork.cz: Učíme národ IT} [online]. [cit. 2022-02-10]. Dostupné z: \url{https://www.itnetwork.cz/navrh/uml/uml-uvod-historie-vyznam-a-diagramy}}
+\citace{uml_use_case}{ITnetwork.cz, UML – Use Case Diagram}{ČÁPKA, David. UML - Use Case Diagram. \emph{ITnetwork.cz: Učíme národ IT} [online]. [cit. 2022-02-10]. Dostupné z: \url{https://www.itnetwork.cz/navrh/uml/uml-use-case-diagram}}
 
+\podsekce{Obrázky}
+\citace{edit_an_article}{Softzen, A very simple use case diagram of a Wiki system}{By Softzen - Own work, CC0, \url{https://commons.wikimedia.org/w/index.php?curid=32398796}}
+\citace{ristral_use_case}{Ristral Use case diagram}{Vlastní tvorba. \url{doplnit odkaz}}
 
 \end{literatura}
 
