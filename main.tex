@@ -36,7 +36,7 @@ zobrazující aktuální jízdní informace, například nejbližší zastávky 
 
 \obsah
 \listoffigures
-%\listoftables
+\listoftables
 
 \kapitola{Úvod a cíl práce}
 \sekce{Úvod do problematiky}
@@ -61,7 +61,8 @@ Vzhledem ke stále složitějšímu provozu veřejné dopravy je propracovaný �
 
 \sekce{Cíl práce}
 Cílem práce je navrhnout a naprogramovat funkční řídicí systém pro dopravní společnost, schopný uspokojit požadavky menšího dopravního podniku s nízkými nároky na komplexnost a celkovou propracovanost systému.
-Finální program bude přístupný jako \textbf{progresivní webová aplikace} umožňujicí správu zastávek, linek, vozidel, řidičů, atd. ve webovém prohlížeči bez nutnosti instalace na zařízení uživatele. Palubní počítač vozidla bude suplován mobilním zařízením.
+Finální program bude přístupný jako \textbf{progresivní webová aplikace} umožňujicí správu zastávek, linek, vozidel, řidičů, atd. ve webovém prohlížeči bez nutnosti instalace na zařízení uživatele.
+Palubní počítač vozidla bude suplován mobilním zařízením.
 
 \podsekce{Plánované funkcionality systému}
 Od systému je očekáváno, že bude:
@@ -100,21 +101,541 @@ Dále může přijít vhod při odhadování ceny systému v počátcích vývoj
 Případ užití, \emph{use case}, je sada akcí, které vedou k dosažení určitého cíle. Případem užití může být například registrace uživatele, vytvoření zastávky, zahájení jízdy apod.
 – definuje funkcionality, které by měl navrhovaný systém umět. \cite{uml_use_case}
 
+\podsekce{Use case diagram}
 Use case je nejčastěji zakreslován jako elipsa s jeho názvem uvnitř.
 V diagramu figurují ještě \emph{aktéři}, kteří představují buď uživatele, nebo nějaký externí činitel\footnote{
-Externím činitelem může být například  čas. Například: v bankovní aplikaci by aktér \emph{Čas} mohl být asociovaný k UC \emph{Odeslat výpis z účtu}.
+Externím činitelem může být třeba čas. Například: v bankovní aplikaci by aktér \emph{Čas} mohl být asociovaný k UC \emph{Odeslat výpis z účtu}.
 \emph{Čas} by jednou za měsíc poslal uživatelům výpis z bankovního účtu emailem.
 }, kteří jsou asociovaní s vybranými use cases a tím symbolizují, že se k nim vztahují.
 
 \obrazek
 \vlozobr{edit_an_article.pdf}{1.25}
-\endobr{Jednoduchý use case diagram\obrzdroj{\cite{edit_an_article}}}
+\endobr{Triviální ukázkový use case diagram\obrzdroj{\cite{edit_an_article}}}
 
-\podsekce{Diagram případů užití navrhovaného systému}
+\podsekce{Use case diagram navrhovaného systému}
+Use case diagram navrhovaného systému najdete na obrázku \ref{usecasediagram}.
+
 \obrazekp
 \vlozobrbox{ristral-use-case-diagram.png}{!}{.95\textheight}
-\endobr{UML Use case diagram systému\obrzdroj{\cite{ristral_use_case}}}
+\endobrl{UML Use case diagram systému\obrzdroj{\cite{ristral_use_case}}}{usecasediagram}
 
+\sekce{Specifikace případů užití}
+Specifikace případů užití hlouběji popisuje use cases načrtnuté v use case diagramu.
+
+\podsekce{Use case specifikace navrhovaného systému}
+
+\tabulka{Seznam use cases}\label{seznam_use_cases}
+\begin{tabular}{|l|c|c|} \hline
+\textbf{Use case} & \textbf{Strana} \\ \hline
+UC 1: Registrovat se & \pageref{uc1} \\ \hline
+UC 2: Obnovit heslo & \pageref{uc2} \\ \hline
+UC 3: Poslat zpětnou vazbu & \pageref{uc3} \\ \hline
+UC 4: Prohlížet zastávky, linky a vozidla & \pageref{uc4} \\ \hline
+UC 5: Prohlížet vlastní uskutečněné jízdy & \pageref{uc5} \\ \hline
+UC 6: Kontaktovat administrátora & \pageref{uc6} \\ \hline
+UC 7: Jet jízdu & \pageref{uc7} \\ \hline
+UC 8: Plánovat jízdy & \pageref{uc8} \\ \hline
+UC 9: Spravovat zastávky, režimy obsluhy zastávek, linky, vozidla a typy vozidel & \pageref{uc9} \\ \hline
+UC 10: Sledovat aktivitu podřízených účtů & \pageref{uc10} \\ \hline
+UC 11: Spravovat osobní informace & \pageref{uc11} \\ \hline
+UC 12: Smazat účet & \pageref{uc12} \\ \hline
+UC 13: Spravovat informace o organizaci & \pageref{uc13} \\ \hline
+UC 14: Spravovat podřízené účty & \pageref{uc14} \\ \hline
+UC 15: Poslat zprávu podřízeným účtům & \pageref{uc15} \\ \hline
+UC 16: Smazat účet organizace & \pageref{uc16} \\ \hline
+\end{tabular}
+\endtab
+
+\begin{enumerate}
+\item\podsekce{Registrovat se}\label{uc1}
+\textbf{Krátký popis}
+
+Use case umožní uživateli se registrovat do systému.
+
+\textbf{Podmínky pro spuštění}
+\begin{itemize}
+\item Uživatel není přihlášený.
+\end{itemize}
+\textbf{Základní tok}
+\begin{enumerate}
+\item Uživatel vyplní svoje uživatelské jméno, email a heslo.
+\item Systém zvaliduje data od uživatele.
+\item Systém uloží nového uživatele.
+\end{enumerate}
+\textbf{Alternativní tok 1}
+\begin{enumerate}
+\item Pokud uživatel zvolil registraci organizace, vyplňuje i název organizace.
+\end{enumerate}
+\textbf{Alternativní tok 2}
+\begin{enumerate}
+\item Pokud v 2. bodě základního toku systém zjistí neplatné vstupní údaje, systém ho na to upozorní a nedovolí vytvořit nového uživatele.
+\item Tok pokračuje 1. bodem základního toku.
+\end{enumerate}
+\textbf{Podmínky pro dokončení}
+\begin{enumerate}
+\item Nový uživatel je úspěšně uložen v databázi.
+\end{enumerate}
+
+\item\podsekce{Obnovit heslo}\label{uc2}
+\textbf{Krátký popis}
+
+Umožní nepřihlášenému uživateli obnovit heslo, pokud ho zapomene.
+
+\textbf{Podmínky pro spuštění} 
+\begin{itemize} 
+\item Uživatel není přihlášený.
+\end{itemize}
+\textbf{Základní tok}
+\begin{enumerate}
+\item Uživatel zadá do formuláře emailovou adresu a vyplní recaptcha.
+\item Systém zvaliduje zadané údaje.
+\item Na emailovou adresu zašle systém odkaz na obnovení hesla.
+\end{enumerate}
+\textbf{Alternativní tok}
+\begin{enumerate}
+\item Pokud zadané údaje nejsou validní, tok se spouší znovu od bodu 1 základního toku.
+\end{enumerate}
+\textbf{Podmínky pro dokončení}
+\begin{enumerate}
+\item Email se podařilo odeslat na adresu uživatele.
+\end{enumerate}
+
+\item\podsekce{Poslat zpětnou vazbu}\label{uc3}
+\textbf{Krátký popis}
+
+Uživatel má pomocí tohoto UC možnost kontaktovat vývojáře jednoduchým formulářem.
+
+\textbf{Základní tok}
+\begin{enumerate}
+\item Uživatel vyplní svůj email a zprávu.
+\item Systém odešle zprávu na email vývojáře.
+\item Systém odešle kopii zprávy na email uživatele.
+\end{enumerate}
+\textbf{Alternativní tok}
+\begin{enumerate}
+\item Pokud je uživatel přihlášený, mailovou adresu za něj vyplní systém.
+\end{enumerate}
+\textbf{Podmínky pro dokončení}
+\begin{enumerate}
+\item E-mailová zpráva vývojáři byla úspěšně odeslána.
+\end{enumerate}
+
+\item\podsekce{Prohlížet zastávky, linky a vozidla}\label{uc4}
+\textbf{Krátký popis}
+
+Use case umožní uživateli zobrazit si přehlednou tabulku zastávek, linek a vozidel a po rozkliknutí objektu zobrazí detailnější informace.
+\emph{Pozn.:} u administrátora organizace a jeho potomků je tento UC přepsán případem užití Spravovat zastávky, režimy obsluhy zastávek, linky, vozidla a typy vozidel.
+
+\textbf{Podmínky pro spuštění} 
+\begin{itemize} 
+\item Databáze není prázdná.
+\item Uživatel je přihlášený řadovým účtem organizace.
+\end{itemize}
+\textbf{Základní tok}
+\begin{enumerate}
+\item Systém načte objekty z databáze.
+\item Systém vypíše seznam objektů.
+\end{enumerate}
+\textbf{Alternativní tok}
+\begin{enumerate}
+\item Pokud uživatel rozklikne objekt, systém zobrazí podrobnější informace.
+\end{enumerate}
+
+\item\podsekce{Prohlížet vlastní uskutečněné jízdy}\label{uc5}
+\textbf{Krátký popis}
+
+Uživatel si může zobrazit přehled vlastních uskutečněných jízd. Součástí přehledu by měl být seznam proběhlých jízd a souhrn krátkých informací a statistik o posledních proběhlých jízdách.
+
+\textbf{Podmínky pro spuštění} 
+\begin{itemize} 
+\item Uživatel je přihlášený.
+\end{itemize}
+\textbf{Základní tok}
+\begin{enumerate}
+\item Systém načte uskutečněné jízdy z databáze.
+\item Systém vypočítá statistiky posledních jízd.
+\item Systém zobrazí statistiky a informace o posledních jízdách a seznam proběhlých jízd.
+\end{enumerate}
+\textbf{Alternativní tok}
+\begin{enumerate}
+\item Pokud uživatel neuskutečnil ani jednu jízdu, systém ho na to upozorní a statistiky ani seznam nezobrazuje.
+\end{enumerate}
+
+\item\podsekce{Kontaktovat administrátora}\label{uc6}
+\textbf{Krátký popis}
+
+Uživateli řadového účtu organizace a jeho potomkům mimo uživatele osobního účtu umožňuje pomocí jednoduchého formuláře kontaktovat administrátora/superadministrátora organizace.
+
+\textbf{Podmínky pro spuštění} 
+\begin{itemize} 
+\item Je přihlášený uživatel řadového účtu organizace nebo jeho potomek vyjma uživatele osobního účtu.
+\end{itemize}
+\textbf{Základní tok}
+\begin{enumerate}
+\item Systém načte seznam administrátorů a superadministrátorů z databáze.
+\item Systém zobrazí formulář s combo boxem adresátů a polem pro zadání textu.
+\item Uživatel vyplní zprávu a potvrdí.
+\item Systém odešle zprávu emailem adresátovi.
+\end{enumerate}
+\textbf{Podmínky pro dokončení}
+\begin{enumerate}
+\item Zpráva byla úspěšně odeslána na email adresovaného (super)administrátora.
+\end{enumerate}
+
+\item\podsekce{Jet jízdu}\label{uc7}
+\textbf{Krátký popis}
+
+Umožní uživateli (řidič) uskutečnit a podporovat ho při naplánované jízdě v terénu (uskutečněná jízda je ta, kterou již uživatel (řidič) podle itineráře v naplánovaném čase odjel).
+
+\textbf{Podmínky pro spuštění} 
+\begin{itemize} 
+\item Uživatel je přihlášený.
+\item Uživatelovo zařízení má přesně nastavený čas.
+\item Pokud je offline:
+\begin{itemize}
+\item Naplánovaná jízda je uložena na uživatelově zařízení.
+\item Systém má práva k zapisování a čtení dat na uživatelovo zařízení.
+\end{itemize}
+\end{itemize}
+\textbf{Základní tok}
+\begin{enumerate}
+\item Systém podle času vybere jízdu, kterou má řidič v plánu uskutečnit.
+\item Řidič zahájí jízdu.
+\item Řidič postupně obslouží všechny zastávky, systém ho informuje o čase k dosažení příští zastávky a dalších skutečnostech.
+\item Řidič dojede na konečnou zastávku a tím ukončí jízdu. Jízda je označena jako uskutečněná.
+\item Systém uloží jízdu do vzdálené databáze.
+\end{enumerate}
+\textbf{Alternativní tok 1}
+\begin{enumerate}
+\item Pokud je řidičovo zařízení offline, zůstane uskutečněná jízda uložena pouze na jeho zařízení.
+\item Až bude řidičovo zařízení online, systém uloží jízdu do vzdálené databáze.
+\end{enumerate}
+\textbf{Alternativní tok 2}
+\begin{enumerate}
+\item Pokud je to vůlí řidiče a jsou dostupné dostatečně přesné polohovací služby, systém zobrazuje i mapu s aktuální polohou, případně polohou zastávek.
+\end{enumerate}
+\textbf{Podmínky pro dokončení}
+\begin{enumerate}
+\item Naplánovaná jízda je ve vzdálené databázi úspěšně přepsaná uskutečněnou jízdou.
+\end{enumerate}
+
+\item\podsekce{Plánovat jízdy}\label{uc8}
+\textbf{Krátký popis}
+
+Umožňuje uživateli prohlížet, vytvářet, upravovat a mazat plánované jízdy. V případě účtu organizace spravuje plánované jízdy řadovému uživateli (super)administrátor.
+
+\textbf{Podmínky pro spuštění \emph{– zobrazení, vytvoření, upravení i odstranění}}
+\begin{itemize} 
+\item Je přihlášený administrátor organizace nebo jeho potomek.
+\end{itemize}
+\textbf{Základní tok \emph{– zobrazení}}
+\begin{enumerate}
+\item Systém načte plánované jízdy z databáze.
+\item Systém zobrazí plánované jízdy.
+\end{enumerate}
+\textbf{Alternativní tok \emph{– zobrazení}}
+\begin{enumerate}
+\item Pokud uživatel rozklikne plánovanou jízdu, systém zobrazí podrobnější informace.
+\end{enumerate}
+\textbf{Základní tok \emph{– vytvoření}}
+\begin{enumerate}
+\item Systém zobrazí formůlář pro vytvoření plánování jízdy.
+\item Uživatel zadá hodnoty.
+\item Systém zvaliduje data zadaná uživatelem.
+\item Data jsou uložena do vzdálené databáze.
+\end{enumerate}
+\textbf{Alternativní tok \emph{– vytvoření}}
+\begin{enumerate}
+\item Pokud hodnoty zadané uživatelem nejsou validní, systém uživatele upozorní a nedovolí uložení.
+\item Tok pokračuje 2. bodem základního toku.
+\end{enumerate}
+\textbf{Základní tok – \emph{upravení}}
+\begin{enumerate}
+\item Uživatel vybere naplánovanou jízdu k úpravě.
+\item Systém zobrazí formulář pro úpravu plánované jízdy.
+\item Uživatel upraví hodnoty.
+\item System zvaliduje data upravená uživatelem.
+\item Data jsou uložena do vzdálené databáze.
+\end{enumerate}
+\textbf{Alternativní tok \emph{– upravení}}
+\begin{enumerate}
+\item Pokud hodnoty upravené uživatelem nejsou validní, systém uživatele upozorní a nedovolí uložení.
+\item Tok pokračuje 3. bodem základního toku.
+\end{enumerate}
+\textbf{Základní tok \emph{– odstranění}}
+\begin{enumerate}
+\item Uživatel vybere naplánovanou jízdu ke smazání.
+\item Systém se ujistí, jestli uživatel opravdu chce odstranit naplánovanou jízdu.
+\item Naplánovaná jízda je smazána z databáze.
+\end{enumerate}
+\textbf{Alternativní tok \emph{– odstranění}}
+\begin{enumerate}
+\item Pokud si uživatel rozmyslí odstranění naplánované jízdy v 2. bodě základního toku, 3. bod základního toku se nevykoná.
+\end{enumerate}
+\textbf{Podmínky pro dokončení \emph{– vytvoření, upravení a odstranění}}
+\begin{enumerate} 
+\item Všechny změny jsou úspěšně uložené.
+\end{enumerate}
+
+\item\podsekce{Spravovat zastávky, režimy obsluhy zastávek, linky, vozidla a typy vozidel}\label{uc9}
+\textbf{Krátký popis}
+
+Umožňuje uživateli prohlížet, vytvářet, upravovat a mazat zastávky, linky vozidla a typy vozidel (dále objekty).
+
+\textbf{Podmínky pro spuštění \emph{– zobrazení, vytvoření, upravení i odstranění}} 
+\begin{itemize} 
+\item Je přihlášený administrátor organizace nebo jeho potomek.
+\end{itemize}
+\textbf{Základní tok \emph{– zobrazení}}
+\begin{enumerate}
+\item Systém načte objekty z databáze.
+\item Systém zobrazí objekty v tabulce.
+\end{enumerate}
+\textbf{Alternativní tok \emph{– zobrazení}}
+\begin{enumerate}
+\item Pokud uživatel rozklikne objekt, systém zobrazí podrobnější informace.
+\end{enumerate}
+\textbf{Základní tok \emph{– vytvoření}}
+\begin{enumerate}
+\item Systém zobrazí formůlář pro vytvoření objektu.
+\item Uživatel zadá hodnoty.
+\item Systém zvaliduje data zadaná uživatelem.
+\item Data jsou uložena do vzdálené databáze.
+\end{enumerate}
+\textbf{Alternativní tok \emph{– vytvoření}}
+\begin{enumerate}
+\item Pokud hodnoty zadané uživatelem nejsou validní, systém uživatele upozorní a nedovolí uložení.
+\item Tok pokračuje 2. bodem základního toku.
+\end{enumerate}
+\textbf{Základní tok \emph{– upravení}}
+\begin{enumerate}
+\item Uživatel vybere objekt k úpravě.
+\item Systém zobrazí formulář pro úpravu objektu.
+\item Uživatel upraví hodnoty.
+\item System zvaliduje data upravená uživatelem.
+\item Data jsou uložena do vzdálené databáze.
+\end{enumerate}
+\textbf{Alternativní tok \emph{– upravení}}
+\begin{enumerate}
+\item Pokud hodnoty upravené uživatelem nejsou validní, systém uživatele upozorní a nedovolí uložení.
+\item Tok pokračuje 3. bodem základního toku.
+\end{enumerate}
+\textbf{Základní tok \emph{– odstranění}}
+\begin{enumerate}
+\item Uživatel vybere objekt ke smazání.
+\item Systém se ujistí, jestli uživatel opravdu chce objekt odstranit.
+\item Objekt je smazán z databáze.
+\end{enumerate}
+\textbf{Alternativní tok \emph{– odstranění}}
+\begin{enumerate}
+\item Pokud si uživatel rozmyslí odstranění objektu v 2. bodě základního toku, 3. bod základního toku se nevykoná.
+\end{enumerate}
+\textbf{Podmínky pro dokončení \emph{– vytvoření, upravení a odstranění}}
+\begin{enumerate}
+\item Všechny změny jsou úspěšně uložené.
+\end{enumerate}
+
+\item\podsekce{Sledovat aktivitu podřízených účtů}\label{uc10}
+\textbf{Krátký popis}
+
+Umožní (super)administrátorským účtům sledovat aktivitu účtů podřízených.
+
+\textbf{Podmínky pro spuštění} 
+\begin{itemize} 
+\item Je přihlášený uživatel řadového účtu organizace nebo jeho potomek vyjma uživatele osobního účtu.
+\end{itemize}
+\textbf{Základní tok}
+\begin{enumerate}
+\item Systém načte aktivitu podřízených účtů z databáze.
+\item Systém zobrazí aktivitu podřízených účtů v tabulce.
+\end{enumerate}
+
+\item\podsekce{Spravovat osobní informace}\label{uc11}
+\textbf{Krátký popis}
+
+Uživateli je umožněno spravovat svoje osobní údaje jako jméno, email, heslo, ...
+
+\textbf{Podmínky pro spuštění} 
+\begin{itemize} 
+\item Je přihlášený uživatel osobního účtu nebo superadministrátor organizace.
+\end{itemize}
+\textbf{Základní tok}
+\begin{enumerate}
+\item Systém načte údaje z databáze.
+\item Systém pomocí formuláře umožní uživateli měnit osobní údaje.
+\item Osobní údaje jsou zvalidovány.
+\item Osobní údaje jsou uloženy do databáze.
+\end{enumerate}
+\textbf{Alternativní tok}
+\begin{enumerate}
+\item Pokud údaje zadané uživatelem nejsou validní, systém ho na to upozorní.
+\item Tok pokračuje druhým bodem základního toku.
+\end{enumerate}
+\textbf{Podmínky pro dokončení}
+\begin{enumerate}
+\item Změny byly úspěšně uloženy v databázi.
+\end{enumerate}
+
+\item\podsekce{Smazat účet}\label{uc12}
+\textbf{Krátký popis}
+
+Umožňuje oprávněným uživatelům nenávratně zavřít svůj účet.
+
+\textbf{Podmínky pro spuštění} 
+\begin{itemize} 
+\item Je přihlášený uživatel osobního účtu nebo superadministrátor organizace.
+\end{itemize}
+\textbf{Základní tok}
+\begin{enumerate}
+\item Systém se ujistí, jestli uživatel opravdu chce smazat svůj účet.
+\item Pokud ano, jsou smazána všechna data uživatele.
+\end{enumerate}
+\textbf{Alternativní tok}
+\begin{enumerate}
+\item Pokud je uživatelem jediný superadministrátor v organizaci, smažou se všechna data a uživatelé organizace.
+\end{enumerate}
+\textbf{Podmínky pro dokončení}
+\begin{enumerate}
+\item Všechna související data byla odstraněna z databáze.
+\end{enumerate}
+
+\item\podsekce{Spravovat informace o organizaci}\label{uc13}
+\textbf{Krátký popis}
+
+Use case umožňuje superadministrátorovi organizace upravovat informace o společnosti.
+
+\textbf{Podmínky pro spuštění} 
+\begin{itemize} 
+\item Je přihlášený superadministrátor organizace.
+\end{itemize}
+\textbf{Základní tok}
+\begin{enumerate}
+\item Systém zobrazí formulář pro úpravu informací o organizaci.
+\item Uživatel upraví hodnoty.
+\item Systém zvaliduje hodnoty zadané uživatelem.
+\item Data se uloží do vzdálené databáze.
+\end{enumerate}
+\textbf{Alternativní tok}
+\begin{enumerate}
+\item Pokud hodnoty upravené uživatelem nejsou validní, systém uživatele upozorní a nedovolí uložení.
+\item Tok pokračuje 2. bodem základního toku.
+\end{enumerate}
+\textbf{Podmínky pro dokončení}
+\begin{enumerate}
+\item Změny byly úspěšně uloženy v databázi.
+\end{enumerate}
+
+\item\podsekce{Spravovat podřízené účty}\label{uc14}
+\textbf{Krátký popis}
+
+Umožňuje superadministrátorovi zobrazit, vytvořit, upravit, odstranit a změnit oprávnění podřízeného účtu.
+
+\textbf{Podmínky pro spuštění \emph{– zobrazení, vytvoření, upravení, odstranění i změna oprávnění}}
+\begin{itemize} 
+\item  Je přihlášený superadministrátor organizace.
+\end{itemize}
+\textbf{Základní tok \emph{– zobrazení}}
+\begin{enumerate}
+\item Systém načte podřízené účty z databáze.
+\item Systém zobrazí podřízené účty v tabulce.
+\end{enumerate}
+\textbf{Alternativní tok \emph{– zobrazení}}
+\begin{enumerate}
+\item Pokud uživatel rozklikne podřízené účty, systém zobrazí podrobnější informace.
+\end{enumerate}
+\textbf{Základní tok \emph{– vytvoření}}
+\begin{enumerate}
+\item Systém zobrazí formůlář pro vytvoření podřízeného účtu.
+\item Uživatel zadá hodnoty.
+\item Systém zvaliduje data zadaná uživatelem.
+\item Podřízený účet je uložen do vzdálené databáze.
+\end{enumerate}
+\textbf{Alternativní tok \emph{– vytvoření}}
+\begin{enumerate}
+\item Pokud hodnoty zadané uživatelem nejsou validní, systém uživatele upozorní a nedovolí uložení.
+\item Tok pokračuje 2. bodem základního toku.
+\end{enumerate}
+\textbf{Základní tok \emph{– upravení}}
+\begin{enumerate}
+\item Uživatel vybere podřízený účet k úpravě.
+\item Systém zobrazí formulář pro úpravu podřízeného účtu.
+\item Uživatel upraví hodnoty.
+\item System zvaliduje data upravená uživatelem.
+\item Data jsou uložena do vzdálené databáze.
+\end{enumerate}
+\textbf{Alternativní tok \emph{– upravení}}
+\begin{enumerate}
+\item Pokud hodnoty upravené uživatelem nejsou validní, systém uživatele upozorní a nedovolí uložení.
+\item Tok pokračuje 3. bodem základního toku.
+\end{enumerate}
+\textbf{Základní tok \emph{– odstranění}}
+\begin{enumerate}
+\item Uživatel vybere podřízený účet ke smazání.
+\item Systém se ujistí, jestli uživatel opravdu chce podřízený účet odstranit.
+\item Podřízený účet je smazán z databáze.
+\end{enumerate}
+\textbf{Alternativní tok \emph{– odstranění}}
+\begin{enumerate}
+\item Pokud si uživatel rozmyslí odstranění podřízeného účtu v 2. bodě základního toku, 3. bod základního toku se nevykoná.
+\end{enumerate}
+\textbf{Základní tok \emph{– změna oprávnění}}
+\begin{enumerate}
+\item Uživatel vybere podřízený účet, kterému chce změnit oprávnění a vybere oprávnění.
+\item Systém účtu změní oprávnění a změnu zapíše do databáze.
+\end{enumerate}
+\textbf{Alternativní tok \emph{– změna oprávnění}}
+\begin{enumerate}
+\item Pokud je uživatel jediný superadministrátor a chce si odstranit superadministrátorské oprávnění, systém změnu zamítne.
+\end{enumerate}
+\textbf{Podmínky pro dokončení \emph{– vytvoření, upravení, odstranění a změna oprávnění}}
+\begin{enumerate}
+\item Všechny změny jsou úspěšně uložené ve vzdálené databázi.
+\end{enumerate}
+
+\item\podsekce{Poslat zprávu podřízeným účtům}\label{uc15}
+\textbf{Krátký popis}
+
+Umožní superadministrátorovi organizace posílat zprávy podřízeným účtům, které se pak zobrazí na domovské stránce všech účtů dané organizace.
+
+\textbf{Podmínky pro spuštění} 
+\begin{itemize} 
+\item Je přihlášený superadministrátor organizace.
+\end{itemize}
+\textbf{Základní tok}
+\begin{enumerate}
+\item Systém uživateli zobrazí formulář.
+\item Uživatel vyplní formulář.
+\item Systém zvaliduje formulář.
+\item Zpráva je odeslána.
+\item Alternativná tok
+\item Pokud formulář v 3. bodě zakládního toku není validní, systém na to uživatele upozorní.
+\item Tok pokračuje 2. bodem základního toku.
+\end{enumerate}
+\textbf{Podmínky pro dokončení}
+\begin{enumerate}
+\item Zpráva je úspěšně uložena v databázi.
+\end{enumerate}
+
+\item\podsekce{Smazat účet organizace}\label{uc16}
+\textbf{Krátký popis}
+
+Umožňuje superadministrátorovi smazat celou organizaci.
+
+\textbf{Podmínky pro spuštění} 
+\begin{itemize} 
+\item Je přihlášený superadministrátor organizace.
+\end{itemize}
+\textbf{Základní tok}
+\begin{enumerate}
+\item Systém se ujistí, jestli superadministrátor opravdu chce smazat organizaci.
+\item Pokud ano, jsou smazána všechna data organizace.
+\end{enumerate}
+\textbf{Podmínky pro dokončení}
+\begin{enumerate}
+\item Všechna související data byla odstraněna z databáze.
+\end{enumerate}
+
+\end{enumerate}
 
 
 \begin{literatura}
