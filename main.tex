@@ -654,6 +654,30 @@ Class diagram navrhovaného systému je zobrazen na obrázku \ref{classdiagram}.
 \endobrl{UML Class diagram systému\obrzdroj{\cite{ristral_use_case}}}{classdiagram}
 
 
+\kapitola{Použité technologie}
+\sekce{Java}
+Aplikace je programována v jazyce \textbf{Java}. Jedná se o jeden z nejpoužívanějších, objektově orientovaných, imperativních programovacích jazyků. V dnešní době je vyvýjena jako \emph{open-source}.
+
+\sekce{Spring Boot a Vaadin}
+\textbf{Spring Boot} je framework usnadňující vývoj webových aplikací v Javě, postará se o logiku aplikace, práci s databází, injekci závislostí, atp.
+Má zabudovaný \textbf{Tomcat} server, což výrazně urychlí vývoj. Na Spring Boot je napojen framework \textbf{Vaadin}, který se stará o \emph{frontend} – to, co vidí uživatel.
+Vaadin poskytuje mnoho vzhledných grafických komponent. \cite{vaadin_komponenty}
+\podsekce{Zpoplatnění}
+V programu je používána PRO verze frameworku Vaadin, která je za normálních podmínek přístupná pod poplatkem 119 USD za měsíc a programátora.
+Vaadin Ltd. ale v rámci výhodného programu umožňuje studentům s platným ISIC průkazem využívat PRO předplatné zadarmo.
+
+\sekce{MySQL a Hibernate}
+Uživatelská data jsou ukládána v relační databázi \textbf{MySQL}. Pro komunikaci s ní je využíváno \emph{objektově relační mapování}\footnote{
+Způsob mapování objektů, základních stavebních prvků objektově orientovaného programování, do relační databáze dívající se na data jako na tabulky.
+Při použití tohoto postupu je programátor do jisté míry odkloněn od nutnosti řešit parsování objektů na tabulky a opačně, což přináší jistý komfort, ale za cenu různých ústupků.
+\emph{ORM} je obecně kontroverzní téma. \cite{orm}} pomocí frameworku \textbf{Hibernate}.
+
+\sekce{AWS}
+Pro samotné spuštění aplikace na vzdáleném serveru a její zpřístupnění uživateli jsou využívány \textbf{Amazon Web Services}, například \textbf{Elastic Beanstalk} pro nasazení webové aplikace, \textbf{RDS} pro správu databáze nebo \textbf{Certificate Manager} pro vystavení SSL certifikátu nutného pro správné fungování progresivní webové aplikace.
+\podsekce{Zpoplatnění}
+Všechny služby využívané systémem podléhají ročnímu bezplatnému tarifu AWS, který obdrží každý nově zarezervovaný uživatel.
+
+
 
 \begin{literatura}
 
@@ -661,6 +685,8 @@ Class diagram navrhovaného systému je zobrazen na obrázku \ref{classdiagram}.
 \citace{uvod_do_uml}{ITnetwork.cz, Úvod do UML}{ČÁPKA, David. Úvod do UML. \emph{ITnetwork.cz: Učíme národ IT} [online]. [cit. 2022-02-10]. Dostupné z: \url{https://www.itnetwork.cz/navrh/uml/uml-uvod-historie-vyznam-a-diagramy}}
 \citace{uml_use_case}{ITnetwork.cz, UML – Use Case Diagram}{ČÁPKA, David. UML - Use Case Diagram. \emph{ITnetwork.cz: Učíme národ IT} [online]. [cit. 2022-02-10]. Dostupné z: \url{https://www.itnetwork.cz/navrh/uml/uml-use-case-diagram}}
 \citace{uml_class}{ITnetwork.cz, UML – Class diagram}{ČÁPKA, David. UML – Class diagram. \emph{ITnetwork.cz: Učíme národ IT} [online]. [cit. 2022-02-19]. Dostupné z: \url{https://www.itnetwork.cz/navrh/uml/uml-class-diagram-tridni-model}}
+\citace{vaadin_komponenty}{Vaadin, Components}{Components | Design System | Vaadin Docs. \emph{Vaadin - An open platform for building web apps in Java} [online]. 2022 [cit. 2022-04-04]. Dostupné z: \url{https://vaadin.com/docs/latest/ds/components}}
+\citace{orm}{ITnetwork.cz, UML – Úvod do databází v Javě}{ČÁPKA, David. Lekce 1 - Úvod do databází v Javě. \emph{ITnetwork.cz: Učíme národ IT} [online]. [cit. 2022-04-04]. Dostupné z: \url{https://www.itnetwork.cz/java/jdbc/tutorial-java-uvod-do-databazi}}
 
 \podsekce{Obrázky}
 \citace{edit_an_article}{Softzen, A very simple use case diagram of a Wiki system}{By Softzen - Own work, CC0, \url{https://commons.wikimedia.org/w/index.php?curid=32398796}}
