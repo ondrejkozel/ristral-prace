@@ -103,7 +103,7 @@ Případ užití, \emph{use case}, je sada akcí, které vedou k dosažení urč
 
 \podsekce{Use case diagram}
 Use case je nejčastěji zakreslován jako elipsa s jeho názvem uvnitř.
-V diagramu figurují ještě \emph{aktéři}, kteří představují buď uživatele, nebo nějaký externí činitel\footnote{
+V diagramu figurují ještě \emph{aktéři}, kteří představují buď uživatele nebo nějaký externí činitel\footnote{
 Externím činitelem může být třeba čas. Například: v bankovní aplikaci by aktér \emph{Čas} mohl být asociovaný k UC \emph{Odeslat výpis z účtu}.
 \emph{Čas} by jednou za měsíc poslal uživatelům výpis z bankovního účtu emailem.
 }, kteří jsou asociovaní s vybranými use cases a tím symbolizují, že se k nim vztahují.
@@ -637,12 +637,25 @@ Umožňuje superadministrátorovi smazat celou organizaci.
 
 \end{enumerate}
 
+\sekce{Návrh tříd}
+\emph{Class diagram} je diagram implementace. Navrhuje vnitřní třídní strukturu programu.
+Třídní model může sloužit jako úplný návod pro programátora, když ho přepíše do kódu, musí fungovat. \cite{uml_class}
+
+\podsekce{Class diagram navrhovaného systému}
+Class diagram navrhovaného systému najdete na obrázku \ref{classdiagram}.
+
+\obrazekp
+\vlozobrbox{ristral-use-case-diagram.png}{!}{.95\textheight}
+\endobrl{UML Class diagram systému\obrzdroj{\cite{ristral_use_case}}}{classdiagram}
+
+
 
 \begin{literatura}
 
 \citace{webfleet}{Webfleet CZ, Co je telematika?}{Co je telematika? Webfleet Solutions CZ. \emph{Webfleet Solutions CZ} [online]. [cit. 2022-02-10]. Dostupné z: \url{https://www.webfleet.com/cs_cz/webfleet/fleet-management/glossary/telematics/}}
 \citace{uvod_do_uml}{ITnetwork.cz, Úvod do UML}{ČÁPKA, David. Úvod do UML. \emph{ITnetwork.cz: Učíme národ IT} [online]. [cit. 2022-02-10]. Dostupné z: \url{https://www.itnetwork.cz/navrh/uml/uml-uvod-historie-vyznam-a-diagramy}}
 \citace{uml_use_case}{ITnetwork.cz, UML – Use Case Diagram}{ČÁPKA, David. UML - Use Case Diagram. \emph{ITnetwork.cz: Učíme národ IT} [online]. [cit. 2022-02-10]. Dostupné z: \url{https://www.itnetwork.cz/navrh/uml/uml-use-case-diagram}}
+\citace{uml_class}{ITnetwork.cz, UML – Class diagram}{ČÁPKA, David. UML – Class diagram. \emph{ITnetwork.cz: Učíme národ IT} [online]. [cit. 2022-02-19]. Dostupné z: \url{https://www.itnetwork.cz/navrh/uml/uml-class-diagram-tridni-model}}
 
 \podsekce{Obrázky}
 \citace{edit_an_article}{Softzen, A very simple use case diagram of a Wiki system}{By Softzen - Own work, CC0, \url{https://commons.wikimedia.org/w/index.php?curid=32398796}}
